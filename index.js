@@ -22,6 +22,7 @@ async function run() {
   try {
     const doctorsCollection = client.db("doctor").collection("menu");
     const doctorsUser = client.db("doctor").collection("user");
+    const ema = client.db("ema").collection("products");
 
     app.get('/menu', async (req, res) => {
       const filter = {};
@@ -29,6 +30,11 @@ async function run() {
       res.send(result);
     });
     app.get('/user', async (req, res) => {
+      const filter = {};
+        const result = await doctorsCollection.find(filter).toArray();
+      res.send(result);
+    });
+    app.get('/ema', async (req, res) => {
       const filter = {};
         const result = await doctorsCollection.find(filter).toArray();
       res.send(result);
