@@ -21,7 +21,14 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     const doctorsCollection = client.db("doctor").collection("menu");
-    app.get('/ping', async (req, res) => {
+    const doctorsUser = client.db("doctor").collection("user");
+
+    app.get('/menu', async (req, res) => {
+      const filter = {};
+        const result = await doctorsCollection.find(filter).toArray();
+      res.send(result);
+    });
+    app.get('/user', async (req, res) => {
       const filter = {};
         const result = await doctorsCollection.find(filter).toArray();
       res.send(result);
