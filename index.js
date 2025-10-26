@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors());
+app.use(express.json());  
 require('dotenv').config(); // Load environment variables from .env file
 //---------------------------------------------------------mongodb connection
 const userName = process.env.DB_USERNAME;
@@ -39,6 +40,11 @@ async function run() {
         const result = await doctorsCollection.find(filter).toArray();
       res.send(result);
     });
+    app.post('/menu', async (req, res) => {
+      const data = req.body; 
+      res.send(data);
+    });
+
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
   }
@@ -46,6 +52,6 @@ async function run() {
 run().catch(console.dir);
 //---------------------------------------------------------mongodb connection
 app.get('/', (req, res) => {
-    res.send('Hello, World! my name is Anish');
+    res.send('ONLY ALLAH IS ENOUGH FOR US AND HE IS THE BEST TRUSTED');
 });
 module.exports = app;
